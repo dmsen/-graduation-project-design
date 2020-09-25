@@ -44,24 +44,138 @@ export default [{
     }]
   },
   {
-    path: '/testHome',
-    name: 'testHome',
+    path: '/',
+    name: 'bMap',
+    meta: {
+      hideInMenu: false,
+    },
+    component: myMain,
+    children: [{
+      path: '/bMap',
+      name: 'b-map',
+      meta: {
+        icon: 'ios-settings',
+        title: '百度地图',
+        access: [1, 0, 2],
+      },
+      component: () => import('@/view/b-map/b-map.vue')
+    }, ]
+  },
+  {
+    path: '/',
+    name: 'bEcharts',
     meta: {
       icon: 'ios-settings',
-      title: '测试',
-
+      title: '百度图表展示',
       showAlways: true,
       access: [1, 0, 2],
     },
-    component: parentView,
+    component: myMain,
     children: [{
-      path: '/test',
-      name: 'test',
+      path: '/bEcharts',
+      name: 'b-echarts',
       meta: {
-        title: '测试',
+        icon: 'ios-settings',
+        title: '百度图表1',
         access: [1, 0, 2],
       },
-      component: () => import('@/view/home/home.vue')
+      component: () => import('@/view/b-echarts/b-echarts.vue')
+    }, ]
+  },
+  {
+    path: '/',
+    name: 'websocket',
+    meta: {
+      icon: 'ios-settings',
+      title: '实时图表展示',
+      showAlways: true,
+      access: [1, 0, 2],
+    },
+    component: myMain,
+    children: [{
+      path: '/bEcharts',
+      name: 'dynamic-graph',
+      meta: {
+        icon: 'ios-settings',
+        title: '动态图表首页',
+        access: [1, 0, 2],
+      },
+      component: () => import('@/view/dynamic-graph/dynamic-graph.vue')
+    }, ]
+  },
+  {
+    path: '/',
+    name: 'userManagement',
+    meta: {
+      hideInMenu: false,
+    },
+    component: myMain,
+    children: [{
+      path: '/userManagement',
+      name: 'user-management',
+      meta: {
+        icon: 'ios-settings',
+        title: '用户管理',
+        access: [1, 0, 2],
+      },
+      component: () => import('@/view/user-management/user-management.vue')
+    }, ]
+  },
+  {
+    path: '/',
+    name: 'faultProcessing',
+    meta: {
+      icon: 'ios-settings',
+      title: '故障（业务）处理流程',
+      showAlways: true,
+      access: [1, 0, 2],
+    },
+    component: myMain,
+    children: [{
+      path: '/faultProcessing',
+      name: 'fault-processing',
+      meta: {
+        icon: 'ios-settings',
+        title: '故障（业务）处理流程1',
+        access: [1, 0, 2],
+      },
+      component: () => import('@/view/fault-processing/fault-processing.vue')
+    }, ]
+  },
+  {
+    path: '/',
+    name: 'Audio',
+    meta: {
+      hideInMenu: false,
+    },
+    component: myMain,
+    children: [{
+      path: '/audio',
+      name: 'audio',
+      meta: {
+        icon: 'ios-settings',
+        title: '音乐',
+        access: [1, 0, 2],
+      },
+      component: () => import('@/view/audio/audio.vue')
+    }, ]
+  },
+  {
+    path: '/',
+    name: 'Vidio',
+    meta: {
+      hideInMenu: false,
+    },
+    component: myMain,
+    children: [{
+      path: '/vidio',
+      name: 'vidio',
+      meta: {
+        icon: 'ios-settings',
+        title: '视频',
+        access: [1, 0, 2],
+      },
+      component: () => import('@/view/vidio/vidio.vue')
     }, ]
   },
   {
