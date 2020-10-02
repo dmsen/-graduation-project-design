@@ -213,3 +213,16 @@ export const objEqual = (obj1, obj2) => {
   /* eslint-disable-next-line */
   else return !keysArr1.some(key => obj1[key] != obj2[key])
 }
+
+
+/**
+ * 时间格式化，将时间格式转成字符串
+ */
+export const formateDate = (datetime) => {
+  function addDateZero(num) {
+    return (num < 10 ? "0" + num : num);
+  }
+  let d = new Date(datetime);
+  let formatdatetime = d.getFullYear() + '-' + addDateZero(d.getMonth() + 1) + '-' + addDateZero(d.getDate()) + ' ' + addDateZero(d.getHours()) + ':' + addDateZero(d.getMinutes()) + ':' + addDateZero(d.getSeconds());
+  return formatdatetime
+}

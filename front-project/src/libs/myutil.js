@@ -41,7 +41,13 @@ export const canTurnTo = (name, access, routes) => {
 export const setUserImage = (avatorImgPath) => {
     localStorage.setItem('avatorImgPath', avatorImgPath)
 }
-
+// 存储用户id和用户姓名
+export const saveUserId = (id) => {
+    localStorage.setItem('userId', id)
+}
+export const saveUserName = (userName) => {
+    localStorage.setItem('userName', userName)
+}
 /**
  * @param {*} access 用户权限数组，如 ['super_admin', 'admin']
  * @param {*} route 路由列表

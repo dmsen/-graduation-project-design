@@ -31,7 +31,82 @@
 
     <Layout>
       <Header class="header-con">
-        <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
+        <Modal v-model="badgeModal" title="通知" width="600px">
+          <div
+            style="width: 600px;margin-left: 250px;font-weight: bold;font-size: 15px"
+            v-show="noticeNone"
+          >
+            暂无通知
+          </div>
+          <div v-show="noticeHave">
+            <!--<Card v-for="(item,i) in noticeItem" :key=i>-->
+            <!--用户名{{item.byPerson}}: 内容{{item.content}}:时间{{formateDate(item.time)}}-->
+            <!---->
+            <!--</Card>-->
+            <Collapse accordion>
+              <Panel
+                v-for="(item, i) in noticeItem"
+                :key="i"
+                :hide-arrow="true"
+              >
+                <span style="font-weight: bold"
+                  >用户名：{{ item.byPerson }} </span
+                ><span style="float: right">{{ formateDate(item.time) }}</span>
+                <!--<p slot="content">{{item.content}}</p>-->
+                <div slot="content" style="margin-bottom: 5px">
+                  <p style="word-break: break-all">
+                    {{ item.content }}
+                    <Button
+                      style="float: right;margin-right: -15px;"
+                      @click="readNotice(item.linSystemNoticeId)"
+                      >标记已读</Button
+                    >
+                  </p>
+                </div>
+              </Panel>
+            </Collapse>
+            <Row style="margin-top: 16px">
+              <Col span="24">
+                <Button type="primary" @click="readEdNotice">
+                  查看已读消息</Button
+                >
+                <Button
+                  type="primary"
+                  @click="getNoticeFuntion"
+                  style="margin-left: 10px"
+                >
+                  查看未读消息</Button
+                >
+                <Page
+                  :total="dataLength"
+                  :current="currentPages"
+                  size="small"
+                  show-elevator
+                  :page-size="3"
+                  @on-change="changePages"
+                  show-total
+                  style="float: right;margin-top: 10px"
+                />
+              </Col>
+              <!--<Col span = "10" offset = "3"   >-->
+              <!--<Page :total="dataLength" :current="currentPages" size="small" show-elevator  :page-size ="3" @on-change="changePages" show-total/>-->
+              <!--</Col>-->
+            </Row>
+          </div>
+
+          <div slot="footer">
+            <span style="margin-right: 12px">若有问题请联系管理员</span>
+          </div>
+        </Modal>
+        <header-bar
+          :collapsed="collapsed"
+          @on-coll-change="handleCollapsedChange"
+        >
+          <Badge :offset="bOffset" overflow-count="99" :count="badgeCount">
+            <a href="#" @click="showBadgeModal">
+              <Icon type="ios-notifications-outline" size="26"></Icon
+            ></a>
+          </Badge>
           <user :user-avatar="userAvatar" />
           <!-- <img
             style="height: 80px;width:300px;margin-top: 0;margin-right: 10px"
@@ -43,13 +118,15 @@
         <Layout class="main-layout-con">
           <div class="tag-nav-wrapper"></div>
           <Content class="content-wrapper">
-            <!-- <keep-alive :include="cacheList">
-              <router-view />
-            </keep-alive>-->
             <keep-alive>
               <router-view />
             </keep-alive>
-            <ABackTop :height="100" :bottom="80" :right="50" container=".content-wrapper"></ABackTop>
+            <ABackTop
+              :height="100"
+              :bottom="80"
+              :right="50"
+              container=".content-wrapper"
+            ></ABackTop>
           </Content>
         </Layout>
       </Content>
@@ -72,13 +149,21 @@ export default {
     SideMenu,
     User,
     ABackTop,
-    HeaderBar
+    HeaderBar,
   },
   data() {
     return {
       collapsed: localStorage.getItem("collapseLand") == "true" ? true : false,
       minLogo,
-      maxLogo
+      maxLogo,
+      badgeModal: false,
+      badgeCount: 0,
+      bOffset: [15, -5],
+      noticeItem: null,
+      noticeNone: false,
+      noticeHave: false,
+      dataLength: 0,
+      currentPages: 1,
     };
   },
   computed: {
@@ -86,9 +171,13 @@ export default {
       return this.$store.getters.menuList;
     },
     userAvatar() {
-      return "http://www.dmsen.cn/static/ali_index_files/img/pic2.jpg";
-      // return  ("http://127.0.0.1:8000/media/" + this.$store.state.user.avatorImgPath);
-    }
+      // return "http://www.dmsen.cn/static/ali_index_files/img/pic2.jpg";
+      if (localStorage.getItem("avatorImgPath"))
+        return (
+          this.$config.baseUrl.mediaPath + localStorage.getItem("avatorImgPath")
+        );
+      else return "http://www.dmsen.cn/static/ali_index_files/img/pic2.jpg";
+    },
   },
   watch: {
     $route(newRoute) {
@@ -98,10 +187,11 @@ export default {
     },
     collapsed(val, newVal) {
       localStorage.setItem("collapseLand", !newVal);
-    }
+    },
   },
   methods: {
     ...mapMutations(["setBreadCrumb", "setLocal"]),
+    ...mapActions(["handGetNotice", "handReadNotice", "handReadEdNotice"]),
     turnToPage(route) {
       let { name, params, query } = {};
       if (typeof route === "string") name = route;
@@ -117,13 +207,111 @@ export default {
       this.$router.push({
         name,
         params,
-        query
+        query,
       });
     },
 
     handleCollapsedChange(state) {
       this.collapsed = state;
-    }
+    },
+    showBadgeModal() {
+      let that = this;
+      if (that.noticeItem === null) {
+        that.noticeNone = true;
+        that.badgeModal = true;
+        that.noticeHave = false;
+      } else {
+        that.badgeModal = true;
+        that.noticeNone = false;
+        that.noticeHave = true;
+        that.getNoticeFuntion();
+      }
+    },
+    // 获取用户通知
+    async getNoticeFuntion() {
+      const _this = this;
+      const sendPage = this.currentPages;
+      _this.noticeItem = null;
+      try {
+        const userId = localStorage.getItem("userId");
+        const Res = await _this.handGetNotice({ userId, sendPage });
+        console.log(Res);
+        if (Res.result === 1) {
+          _this.badgeCount = 0;
+        } else {
+          _this.noticeItem = Res.msg;
+          _this.badgeCount = Res.allDateLength;
+          _this.dataLength = Res.allDateLength;
+        }
+      } catch (err) {
+        _this.$Message.error("未知错误" + err);
+      }
+    },
+    // 标记通知已读
+    async readNotice(id) {
+      const _this = this;
+      try {
+        console.log(id);
+        console.log("__________________");
+        const Res = await _this.handReadNotice({ id });
+        console.log(Res);
+        if (Res.result === 1) {
+          _this.$Message.error("发生错误，请稍后再试");
+        } else {
+          _this.$Message.success("操作成功");
+          _this.getNoticeFuntion();
+        }
+      } catch (err) {
+        _this.$Message.error("未知错误" + err);
+      }
+    },
+    // 获取已读通知
+    async readEdNotice() {
+      const _this = this;
+      const sendPage = this.currentPages;
+      _this.noticeItem = null;
+      try {
+        const userId = _this.$store.state.user.userId;
+        const Res = await _this.handReadEdNotice({ userId, sendPage });
+        console.log(Res);
+        if (Res.result === 1) {
+          _this.badgeCount = 0;
+        } else {
+          _this.noticeItem = Res.msg;
+          _this.badgeCount = Res.allDateLength;
+          _this.dataLength = Res.allDateLength;
+        }
+      } catch (err) {
+        _this.$Message.error("未知错误" + err);
+      }
+    },
+    changePages(val) {
+      this.currentPages = val;
+      this.getNoticeFuntion();
+    },
+    /**
+     * 时间格式化，将时间格式转成字符串
+     */
+    formateDate(datetime) {
+      // let  = "2019-11-06T16:00:00.000Z"
+      function addDateZero(num) {
+        return num < 10 ? "0" + num : num;
+      }
+      let d = new Date(datetime);
+      let formatdatetime =
+        d.getFullYear() +
+        "-" +
+        addDateZero(d.getMonth() + 1) +
+        "-" +
+        addDateZero(d.getDate()) +
+        " " +
+        addDateZero(d.getHours()) +
+        ":" +
+        addDateZero(d.getMinutes()) +
+        ":" +
+        addDateZero(d.getSeconds());
+      return formatdatetime;
+    },
   },
   mounted() {
     /**
@@ -131,8 +319,8 @@ export default {
      */
     console.log(this.$route);
     this.setBreadCrumb(this.$route);
-  }
+    // 获取通知
+    this.getNoticeFuntion();
+  },
 };
 </script>
-
-

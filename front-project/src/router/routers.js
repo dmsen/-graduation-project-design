@@ -27,156 +27,198 @@ export default [{
   {
     path: "/",
     name: "_home",
-    redirect: '/home',
+    redirect: "/home",
     component: myMain,
     meta: {
       hideInMenu: false,
     },
     children: [{
-      path: '/home',
-      name: 'home',
+      path: "/home",
+      name: "home",
       meta: {
         hideInMenu: false,
-        title: '首页',
-        icon: 'md-home'
+        title: "首页",
+        icon: "md-home",
       },
-      component: () => import('@/view/home/home.vue')
-    }]
+      component: () => import("@/view/home/home.vue"),
+    }, ],
   },
   {
-    path: '/',
-    name: 'bMap',
+    path: "/",
+    name: "bMap",
+    component: myMain,
     meta: {
       hideInMenu: false,
+      access: [1, 0, 2],
+    },
+    children: [{
+      path: "/bMap",
+      name: "b-map",
+      meta: {
+        hideInMenu: false,
+        title: "百度地图",
+        icon: "ios-flower",
+      },
+      component: () => import("@/view/b-map/b-map.vue"),
+    }, ],
+  },
+
+  {
+    path: "/",
+    meta: {
+      // hideInMenu: false,
+      hideInBread: true,
+      access: [1, 0, 2],
     },
     component: myMain,
     children: [{
-      path: '/bMap',
-      name: 'b-map',
+      path: "/userManagement",
+      name: "user-management",
       meta: {
-        icon: 'ios-settings',
-        title: '百度地图',
-        access: [1, 0, 2],
+        icon: "ios-flower",
+        title: "用户管理",
       },
-      component: () => import('@/view/b-map/b-map.vue')
-    }, ]
+      component: () => import("@/view/user-management/user-management.vue"),
+    }, ],
   },
   {
-    path: '/',
-    name: 'bEcharts',
+    path: "/",
+    name: "bEcharts",
     meta: {
-      icon: 'ios-settings',
-      title: '百度图表展示',
+      icon: "ios-flower",
+      title: "百度图表展示",
       showAlways: true,
       access: [1, 0, 2],
     },
     component: myMain,
     children: [{
-      path: '/bEcharts',
-      name: 'b-echarts',
+      path: "/bEcharts",
+      name: "b-echarts",
       meta: {
-        icon: 'ios-settings',
-        title: '百度图表1',
-        access: [1, 0, 2],
+        icon: "ios-flower",
+        title: "百度图表1",
       },
-      component: () => import('@/view/b-echarts/b-echarts.vue')
-    }, ]
+      component: () => import("@/view/b-echarts/b-echarts.vue"),
+    }, ],
   },
   {
-    path: '/',
-    name: 'websocket',
+    path: "/",
+    name: "websocket",
     meta: {
-      icon: 'ios-settings',
-      title: '实时图表展示',
+      icon: "ios-flower",
+      title: "实时图表展示",
       showAlways: true,
       access: [1, 0, 2],
     },
     component: myMain,
     children: [{
-      path: '/bEcharts',
-      name: 'dynamic-graph',
+      path: "/bEcharts",
+      name: "dynamic-graph",
       meta: {
-        icon: 'ios-settings',
-        title: '动态图表首页',
-        access: [1, 0, 2],
+        icon: "ios-flower",
+        title: "动态图表首页",
       },
-      component: () => import('@/view/dynamic-graph/dynamic-graph.vue')
-    }, ]
+      component: () => import("@/view/dynamic-graph/dynamic-graph.vue"),
+    }, ],
   },
+
   {
-    path: '/',
-    name: 'userManagement',
+    path: "/",
+    name: "faultProcessing",
     meta: {
-      hideInMenu: false,
-    },
-    component: myMain,
-    children: [{
-      path: '/userManagement',
-      name: 'user-management',
-      meta: {
-        icon: 'ios-settings',
-        title: '用户管理',
-        access: [1, 0, 2],
-      },
-      component: () => import('@/view/user-management/user-management.vue')
-    }, ]
-  },
-  {
-    path: '/',
-    name: 'faultProcessing',
-    meta: {
-      icon: 'ios-settings',
-      title: '故障（业务）处理流程',
+      icon: "ios-flower",
+      title: "故障（业务）处理流程",
       showAlways: true,
       access: [1, 0, 2],
     },
     component: myMain,
     children: [{
-      path: '/faultProcessing',
-      name: 'fault-processing',
+      path: "/faultProcessing",
+      name: "fault-processing",
       meta: {
-        icon: 'ios-settings',
-        title: '故障（业务）处理流程1',
-        access: [1, 0, 2],
+        icon: "ios-flower",
+        title: "故障（业务）处理流程1",
       },
-      component: () => import('@/view/fault-processing/fault-processing.vue')
-    }, ]
+      component: () => import("@/view/fault-processing/fault-processing.vue"),
+    }, ],
   },
   {
-    path: '/',
-    name: 'Audio',
+    path: "/",
+    name: "Audio",
     meta: {
       hideInMenu: false,
+      access: [1, 0, 2],
     },
     component: myMain,
     children: [{
-      path: '/audio',
-      name: 'audio',
+      path: "/audio",
+      name: "audio",
       meta: {
-        icon: 'ios-settings',
-        title: '音乐',
-        access: [1, 0, 2],
+        icon: "ios-flower",
+        title: "音乐",
       },
-      component: () => import('@/view/audio/audio.vue')
-    }, ]
+      component: () => import("@/view/audio/audio.vue"),
+    }, ],
   },
   {
-    path: '/',
-    name: 'Vidio',
+    path: "/",
+    name: "Vidio",
     meta: {
       hideInMenu: false,
+      access: [1, 0, 2],
     },
     component: myMain,
     children: [{
-      path: '/vidio',
-      name: 'vidio',
+      path: "/vidio",
+      name: "vidio",
       meta: {
-        icon: 'ios-settings',
-        title: '视频',
+        icon: "ios-flower",
+        title: "视频",
+      },
+      component: () => import("@/view/vidio/vidio.vue"),
+    }, ],
+  },
+  {
+    path: "/",
+    name: "industrialSystem",
+    meta: {
+      icon: "ios-flower",
+      title: "工业数据实时监测系统",
+      showAlways: true,
+      access: [1, 0, 2],
+    },
+    component: myMain,
+    children: [{
+      path: "/bEcharts",
+      name: "industrial-system",
+      meta: {
+        icon: "ios-flower",
+        title: "一级导航",
+        showAlways: true,
         access: [1, 0, 2],
       },
-      component: () => import('@/view/vidio/vidio.vue')
-    }, ]
+      component: parentView,
+      children: [{
+          path: "/bEcharts1",
+          name: "industrial-system1",
+          meta: {
+            icon: "ios-flower",
+            title: "二级导航",
+          },
+          component: () => import("@/view/b-echarts/b-echarts.vue"),
+        },
+        {
+          path: "/bEcharts2",
+          name: "industrial-system2",
+          meta: {
+            icon: "ios-flower",
+            title: "二级导航",
+          },
+          component: () => import("@/view/b-echarts/b-echarts.vue"),
+        },
+      ],
+
+    }, ],
   },
   {
     path: "/401",
