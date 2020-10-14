@@ -189,36 +189,159 @@ export default [{
     },
     component: myMain,
     children: [{
-      path: "/bEcharts",
-      name: "industrial-system",
-      meta: {
-        icon: "ios-flower",
-        title: "一级导航",
-        showAlways: true,
-        access: [1, 0, 2],
+        path: "/industrialSystem/",
+        name: "equipment",
+        meta: {
+          icon: "ios-settings",
+          title: "设备管理",
+          showAlways: true,
+          access: [1, 0],
+        },
+        component: parentView,
+        children: [{
+            path: "macType",
+            name: "macType",
+            meta: {
+              title: "设备类型",
+            },
+            component: () =>
+              import("@/view/industrial-system/equipment/macType.vue"),
+          },
+          {
+            path: "mac",
+            name: "mac",
+            meta: {
+              title: "机器管理",
+            },
+            component: () =>
+              import("@/view/industrial-system/equipment/mac.vue"),
+          },
+        ],
       },
-      component: parentView,
-      children: [{
-          path: "/bEcharts1",
-          name: "industrial-system1",
-          meta: {
-            icon: "ios-flower",
-            title: "二级导航",
-          },
-          component: () => import("@/view/b-echarts/b-echarts.vue"),
+      {
+        path: '/industrialSystem/',
+        name: 'gateway',
+        meta: {
+          icon: 'md-cloud-outline',
+          title: '网关与监测点管理',
+          showAlways: true,
+          access: [1, 0],
         },
-        {
-          path: "/bEcharts2",
-          name: "industrial-system2",
-          meta: {
-            icon: "ios-flower",
-            title: "二级导航",
+        component: parentView,
+        children: [{
+            path: 'config',
+            name: 'config',
+            meta: {
+              title: '监测点配置'
+            },
+            component: () => import('@/view/industrial-system/gw/config.vue')
           },
-          component: () => import("@/view/b-echarts/b-echarts.vue"),
+          {
+            path: 'iops',
+            name: 'iops',
+            meta: {
+              title: '监测点组管理'
+            },
+            component: () => import('@/view/industrial-system/gw/iops.vue')
+          },
+        ]
+      },
+      {
+        path: '/industrialSystem/',
+        name: 'alarm',
+        meta: {
+          icon: 'md-notifications-outline',
+          title: '异常报警',
+          showAlways: true,
+          hideInMenu: sessionStorage.getItem('alarmMenuLand') ? true : false,
+          access: [1,0],
         },
-      ],
+        component: parentView,
+        children: [{
+            path: 'record',
+            name: 'record',
+            meta: {
+              title: '异常记录',
+                access: [1,0],
+            },
+            component: () => import('@/view/industrial-system/alarm/record.vue')
+          },
+          {
+            path: 'solution',
+            name: 'solution',
+            meta: {
+              title: '解决方案'
+            },
+            component: () => import('@/view/industrial-system/alarm/solution.vue')
+          },
+          {
+            path: 'code',
+            name: 'code',
+            meta: {
+              title: '异常码'
+            },
+            component: () => import('@/view/industrial-system/alarm/code.vue')
+          },
+          {
+            path: 'codes',
+            name: 'codes',
+            meta: {
+              title: '组合码'
+            },
+            component: () => import('@/view/industrial-system/alarm/codes.vue')
+          },
+          {
+            path: 'process',
+            name: 'process',
+            meta: {
+              title: '故障处理'
+            },
+            component: () => import('@/view/industrial-system/alarm/process.vue')
+          },
+            {
+                path: 'history',
+                name: 'alarmHistory',
+                meta: {
+                    title: '历史操作'
+                },
+                component: () => import('@/view/industrial-system/alarm/alarmHistory.vue')
+            },
+        ]
+      },
 
-    }, ],
+      {
+        path: '/industrialSystem/',
+        name: 'files',
+        meta: {
+          icon: 'md-document',
+          title: '档案管理',
+          showAlways: true,
+          hideInMenu: sessionStorage.getItem('archiveMenuLand') ? true : false,
+          access: [1, 0, 2],
+        },
+        component: parentView,
+        children: [{
+            path: 'mechanism',
+            name: 'mechanism',
+            meta: {
+              title: '机构档案',
+              access: [1, 0, 2],
+            },
+            component: () => import('@/view/industrial-system/files/mechanism.vue')
+          },
+          {
+            path: 'customer',
+            name: 'customer',
+            meta: {
+              title: '客户档案',
+              access: [1, 0, 2],
+            },
+            component: () => import('@/view/industrial-system/files/customer.vue')
+          },
+        ]
+      },
+
+    ],
   },
   {
     path: "/401",

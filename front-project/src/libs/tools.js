@@ -226,3 +226,24 @@ export const formateDate = (datetime) => {
   let formatdatetime = d.getFullYear() + '-' + addDateZero(d.getMonth() + 1) + '-' + addDateZero(d.getDate()) + ' ' + addDateZero(d.getHours()) + ':' + addDateZero(d.getMinutes()) + ':' + addDateZero(d.getSeconds());
   return formatdatetime
 }
+
+
+
+/**
+ * @param {Number} timeStamp 传入的时间戳
+ * @param {Number} startType 要返回的时间字符串的格式类型，传入'year'则返回年开头的完整时间
+ */
+export const stampToDate = (timeStamp, startType) => {
+  const d = new Date(timeStamp)
+  console.log(timeStamp)
+  const year = d.getFullYear()
+  const month = getHandledValue(d.getMonth() + 1)
+  const date = getHandledValue(d.getDate())
+  const hours = getHandledValue(d.getHours())
+  const minutes = getHandledValue(d.getMinutes())
+  const second = getHandledValue(d.getSeconds())
+  let resStr = ''
+  if (startType === 'year') resStr = year + '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + second
+  else resStr = month + '-' + date + ' ' + hours + ':' + minutes
+  return resStr
+}

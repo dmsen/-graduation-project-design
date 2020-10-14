@@ -5,20 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9978363b-37d0-424d-b141-838d07f6ac60" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app01/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app01/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app01/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app01/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app01/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app01/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backendProject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backendProject/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front-project/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../front-project/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front-project/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../front-project/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-project/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-project/src/api/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-project/src/components/login-form/login-form.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-project/src/components/login-form/login-form.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-project/src/components/mymain/components/user/user.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-project/src/components/mymain/components/user/user.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-project/src/components/mymain/mymain.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-project/src/components/mymain/mymain.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-project/src/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-project/src/config/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-project/src/libs/tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-project/src/libs/tools.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front-project/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-project/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front-project/src/router/routers.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-project/src/router/routers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-project/src/store/mymodule/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front-project/src/store/mymodule/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-project/src/view/home/home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-project/src/view/home/home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-project/src/view/login/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-project/src/view/login/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-project/src/view/user-management/user-management.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../front-project/src/view/user-management/user-management.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,35 +53,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app01/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="61" column="48" selection-end-line="68" selection-end-column="58" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-                <element signature="e#208#1496#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app01/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1276">
-              <caret line="58" selection-start-line="58" selection-end-line="188" />
-              <folding>
-                <element signature="e#39#74#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app01/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="4" column="87" selection-start-line="4" selection-start-column="87" selection-end-line="4" selection-end-column="87" />
+            <state relative-caret-position="32">
+              <caret line="46" selection-start-line="46" selection-end-line="57" selection-end-column="66" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -93,12 +65,60 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app01/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="164">
+              <caret line="241" selection-start-line="241" selection-end-line="259" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+                <element signature="e#208#1496#0" />
+                <element signature="e#1815#2706#0" />
+                <element signature="e#8540#9691#0" />
+                <element signature="e#9795#10651#0" />
+                <element signature="e#10758#11829#0" />
+                <element signature="e#9749#10394#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backendProject/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="34" selection-start-line="34" selection-end-line="39" selection-end-column="71" />
+            <state relative-caret-position="340">
+              <caret line="85" selection-start-line="85" selection-end-line="85" selection-end-column="82" />
               <folding>
                 <element signature="e#648#680#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app01/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="921" selection-start-line="921" selection-end-line="942" selection-end-column="102" />
+              <folding>
+                <element signature="e#39#74#0" expanded="true" />
+                <element signature="e#14627#15210#0" />
+                <element signature="e#15257#15825#0" />
+                <element signature="e#15873#16309#0" />
+                <element signature="e#16352#16900#0" />
+                <element signature="e#16943#17754#0" />
+                <element signature="e#17797#18358#0" />
+                <element signature="e#18405#20516#0" />
+                <element signature="e#20558#21947#0" />
+                <element signature="e#21989#22984#0" />
+                <element signature="e#23026#23524#0" />
+                <element signature="e#28676#29277#0" />
+                <element signature="e#36776#37146#0" />
+                <element signature="e#34131#34481#0" />
+                <element signature="e#34524#35104#0" />
+                <element signature="e#35147#35732#0" />
+                <element signature="e#35775#36359#0" />
+                <element signature="e#39503#40702#0" />
+                <element signature="e#40759#41745#0" />
               </folding>
             </state>
           </provider>
@@ -119,6 +139,8 @@
       <find>csrf_exempt</find>
       <find>staticfiles</find>
       <find>hutNoticeUser</find>
+      <find>on_delete</find>
+      <find>IOPNames</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -129,9 +151,9 @@
       <list>
         <option value="$PROJECT_DIR$/static/css/index.css" />
         <option value="$PROJECT_DIR$/templates/index.html" />
-        <option value="$PROJECT_DIR$/app01/admin.py" />
         <option value="$PROJECT_DIR$/backendProject/settings.py" />
         <option value="$PROJECT_DIR$/app01/models.py" />
+        <option value="$PROJECT_DIR$/app01/admin.py" />
         <option value="$PROJECT_DIR$/backendProject/urls.py" />
         <option value="$PROJECT_DIR$/app01/views.py" />
       </list>
@@ -206,7 +228,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/media/linSystem" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
@@ -247,7 +270,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24900925" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24834874" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -258,7 +281,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32991204" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32697946" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32991204" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -268,6 +291,12 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/media/linSystem/defaultTou.png" />
+    <entry file="file://$PROJECT_DIR$/media/linSystem/2020/1002/blob_1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media/linSystem/2020/1002/blob_2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -291,47 +320,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app01/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="4" column="87" selection-start-line="4" selection-start-column="87" selection-end-line="4" selection-end-column="87" />
+        <state relative-caret-position="32">
+          <caret line="46" selection-start-line="46" selection-end-line="57" selection-end-column="66" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/media/linSystem/2020/1002/blob_1.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/media/linSystem/2020/1002/blob_2.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app01/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="61" column="48" selection-end-line="68" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-            <element signature="e#208#1496#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backendProject/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="34" selection-start-line="34" selection-end-line="39" selection-end-column="71" />
+        <state relative-caret-position="340">
+          <caret line="85" selection-start-line="85" selection-end-line="85" selection-end-column="82" />
           <folding>
             <element signature="e#648#680#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app01/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="241" selection-start-line="241" selection-end-line="259" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#208#1496#0" />
+            <element signature="e#1815#2706#0" />
+            <element signature="e#8540#9691#0" />
+            <element signature="e#9795#10651#0" />
+            <element signature="e#10758#11829#0" />
+            <element signature="e#9749#10394#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app01/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1276">
-          <caret line="58" selection-start-line="58" selection-end-line="188" />
+        <state relative-caret-position="252">
+          <caret line="921" selection-start-line="921" selection-end-line="942" selection-end-column="102" />
           <folding>
             <element signature="e#39#74#0" expanded="true" />
+            <element signature="e#14627#15210#0" />
+            <element signature="e#15257#15825#0" />
+            <element signature="e#15873#16309#0" />
+            <element signature="e#16352#16900#0" />
+            <element signature="e#16943#17754#0" />
+            <element signature="e#17797#18358#0" />
+            <element signature="e#18405#20516#0" />
+            <element signature="e#20558#21947#0" />
+            <element signature="e#21989#22984#0" />
+            <element signature="e#23026#23524#0" />
+            <element signature="e#28676#29277#0" />
+            <element signature="e#36776#37146#0" />
+            <element signature="e#34131#34481#0" />
+            <element signature="e#34524#35104#0" />
+            <element signature="e#35147#35732#0" />
+            <element signature="e#35775#36359#0" />
+            <element signature="e#39503#40702#0" />
+            <element signature="e#40759#41745#0" />
           </folding>
         </state>
       </provider>

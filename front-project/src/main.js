@@ -17,6 +17,15 @@ if (theme) {
   import("./theme/blue.less");
 }
 
+// 树状图
+import OrgTree from 'v-org-tree'
+import 'v-org-tree/dist/v-org-tree.css'
+Vue.use(OrgTree)
+
+// 树状表
+import TreeTable from 'tree-table-vue'
+Vue.use(TreeTable)
+
 Vue.config.productionTip = false;
 Vue.prototype.$config = config;
 
