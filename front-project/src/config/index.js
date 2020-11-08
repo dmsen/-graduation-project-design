@@ -16,9 +16,20 @@ export default {
   /**
    * @description api请求基础路径
    */
+  // autoOpenBrowser:true,
+  // proxyTable:{ 
+  //   '/api':{
+  //     target: "http://127.0.0.1:8000/",
+  //     changeOrigin:true,
+  //     pathRewrite:{
+  //        '^/api':''
+  //     }
+  // }
+  // },
   baseUrl: {
     dev: 'http://127.0.0.1:8000/',
     pro: 'http://127.0.0.1:8000/',
+    websocketUrl:'ws://127.0.0.1:8000/linSystem/websocket',
     mediaPath: 'http://127.0.0.1:8000/media/'
     // dev: 'http://112.74.59.53/',
     // pro: 'http://112.74.59.53/',

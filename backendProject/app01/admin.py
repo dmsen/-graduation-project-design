@@ -14,9 +14,6 @@ class linSystemUserAdmin(admin.ModelAdmin):
 
 admin.site.register(models.linSystemUser,linSystemUserAdmin)
 
-
-
-
 # 所有网关
 class gateways_allAdmin(admin.ModelAdmin):
     # 列表页显示的字段
@@ -43,7 +40,6 @@ class IOPointsAdmin(admin.ModelAdmin):
 
 admin.site.register(models.gateways_all,gateways_allAdmin)
 admin.site.register(models.IOPoints,IOPointsAdmin)
-
 # 单个异常记录
 class  singleAlarmCodesAdmin(admin.ModelAdmin):
     # 列表页显示的字段
@@ -56,3 +52,41 @@ class  singleAlarmCodesAdmin(admin.ModelAdmin):
     list_filter = ('singleAlarmCodeId', 'startTime','duration' )
     search_fields = ('singleAlarmCodeId', 'startTime','duration')
 admin.site.register(models.singleAlarmCodes,singleAlarmCodesAdmin)
+
+##################百度地图###############################################################
+##########################################################################################
+class linSystemMapPointImagesAdmin(admin.ModelAdmin):
+    # 列表页显示的字段
+    list_display = ('mapPointImagesId', 'mapPointImage', 'mapPoint' )
+    # 可直接点击进入修改页面
+    list_display_links = ('mapPointImagesId',)
+    # 右侧过滤器
+    list_filter = ('mapPointImagesId', )
+    search_fields = ('mapPointImagesId', )
+
+class linSystemMapPointAdmin(admin.ModelAdmin):
+    # 列表页显示的字段
+    list_display = ('mapPointId', 'mapPointName','mapPointJ','mapPointW','mapPointAddr','mapPointTel','mapPointBedNum','mapPointFee','mapPointJian','mapPointServer')
+    # 可在列表页直接修改（链接和编辑不能同时用）
+    list_editable = ('mapPointName','mapPointAddr','mapPointTel','mapPointBedNum')
+    # 可直接点击进入修改页面
+    list_display_links = ('mapPointId',)
+    # 右侧过滤器
+    list_filter = ('mapPointId', 'mapPointName','mapPointAddr')
+    search_fields = ('mapPointId', 'mapPointName','mapPointAddr')
+
+class linSystemMapPointVediosAdmin(admin.ModelAdmin):
+    # 列表页显示的字段
+    list_display = ('mapPointVediosId', 'mapPointVedio', 'mapPoint' )
+    # 可直接点击进入修改页面
+    list_display_links = ('mapPointVediosId',)
+    # 右侧过滤器
+    list_filter = ('mapPointVediosId', )
+    search_fields = ('mapPointVediosId', )
+
+admin.site.register(models.linSystemMapPointImages,linSystemMapPointImagesAdmin)
+admin.site.register(models.linSystemMapPoint,linSystemMapPointAdmin)
+admin.site.register(models.linSystemMapPointVedios,linSystemMapPointVediosAdmin)
+
+
+

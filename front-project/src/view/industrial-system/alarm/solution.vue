@@ -14,35 +14,69 @@
 
     <Row style="margin-top: 16px">
       <Col span="3">
-        <Button style="margin: 10px 0;" type="primary" @click="exportExcel">导出为Csv文件</Button>
+        <Button style="margin: 10px 0;" type="primary" @click="exportExcel"
+          >导出为Csv文件</Button
+        >
       </Col>
       <Col span="5">
-        <Button style="margin: 10px 0 10px 5px;" type="default" @click="showAddScheme">增加解决方案</Button>
+        <Button
+          style="margin: 10px 0 10px 5px;"
+          type="default"
+          @click="showAddScheme"
+          >增加解决方案</Button
+        >
       </Col>
-      <Col span = "10" offset = "6">
-        <Page :total="dataLength" :current="currentPages" size="small" show-elevator  :page-size ="10" @on-change="changePages" show-total/>
+      <Col span="10" offset="6">
+        <Page
+          :total="dataLength"
+          :current="currentPages"
+          size="small"
+          show-elevator
+          :page-size="10"
+          @on-change="changePages"
+          show-total
+        />
       </Col>
     </Row>
-
 
     <Card v-if="handleScheme" :dis-hover="true">
       <Row>
         <i-col span="17">
-          <Form :model="formItem" ref="formItem" :label-width="130" class="form">
+          <Form
+            :model="formItem"
+            ref="formItem"
+            :label-width="130"
+            class="form"
+          >
             <FormItem label="解决方案名称" prop="name">
-              <Input v-model="formItem.name" style="width: auto"/>
+              <Input v-model="formItem.name" style="width: auto" />
             </FormItem>
             <FormItem label="解决方案详情" prop="detail">
-              <Input v-model="formItem.detail" style="width: auto"/>
+              <Input v-model="formItem.detail" style="width: auto" />
             </FormItem>
             <FormItem label="适用异常码/组合码">
               <Select v-model="formItem.codes" multiple style="width: auto">
                 <!--<Option v-for="(i,index) in formItem.list" :key="index" :value="i.code">{{i.name}}</Option>-->
-                <Option v-for="(i,index) in formItem.list" :key="index" :value="i.name">{{i.name}}</Option>
+                <Option
+                  v-for="(i, index) in formItem.list"
+                  :key="index"
+                  :value="i.name"
+                  >{{ i.name }}</Option
+                >
               </Select>
             </FormItem>
-            <Button style="margin: 10px 0 10px 100px;" type="primary" @click="handleSubmit">确认提交</Button>
-            <Button style="margin: 10px 0 10px 5px;" type="default" @click="handleCancel">取消</Button>
+            <Button
+              style="margin: 10px 0 10px 100px;"
+              type="primary"
+              @click="handleSubmit"
+              >确认提交</Button
+            >
+            <Button
+              style="margin: 10px 0 10px 5px;"
+              type="default"
+              @click="handleCancel"
+              >取消</Button
+            >
           </Form>
         </i-col>
       </Row>
@@ -66,8 +100,8 @@ export default {
   },
   data() {
     return {
-      dataLength:0,
-      currentPages:1,
+      dataLength: 0,
+      currentPages: 1,
       handleScheme: false,
       formItem: {
         isAdd: true,
@@ -168,19 +202,19 @@ export default {
     };
   },
   methods: {
-    changePages(val){
-        this.currentPages =  val;
-        this.getScheme();
+    changePages(val) {
+      this.currentPages = val;
+      this.getScheme();
     },
     async handleDelete(params) {
       const _this = this;
       const id = this.tableData[params.index].id;
       try {
         const deleteRes = await deleteScheme({ id });
-        if(deleteRes.data.result ===1){
-            _this.$Message.error(deleteRes.data.msg);
-        }else {
-            _this.$Message.success("删除成功");
+        if (deleteRes.data.result === 1) {
+          _this.$Message.error(deleteRes.data.msg);
+        } else {
+          _this.$Message.success("删除成功");
         }
       } catch (err) {
         if (err.response !== undefined) {
@@ -194,9 +228,9 @@ export default {
     async getScheme() {
       try {
         const sendPage = this.currentPages;
-        const dataLists =  await getScheme(sendPage);
-        console.log('解决方案')
-        console.log(dataLists)
+        const dataLists = await getScheme(sendPage);
+        console.log("解决方案");
+        console.log(dataLists);
         this.dataLength = dataLists.data.allDateLength;
         this.tableData = [];
         for (let i = 0, l = dataLists.data.msg.length; i < l; i++) {
@@ -275,12 +309,10 @@ export default {
             name,
             codes
           });
-          if(addRes.data.result === 0)
-          {
-              _this.$Message.success("添加成功");
-          }
-          else {
-              _this.$Message.error(addRes.data.msg);
+          if (addRes.data.result === 0) {
+            _this.$Message.success("添加成功");
+          } else {
+            _this.$Message.error(addRes.data.msg);
           }
         } else {
           const changeRes = await changeScheme({
@@ -289,13 +321,11 @@ export default {
             name,
             codes
           });
-            if(changeRes.data.result === 0)
-            {
-                _this.$Message.success("修改成功");
-            }
-            else {
-                _this.$Message.error(changeRes.data.msg);
-            }
+          if (changeRes.data.result === 0) {
+            _this.$Message.success("修改成功");
+          } else {
+            _this.$Message.error(changeRes.data.msg);
+          }
         }
       } catch (err) {
         if (err.response !== undefined) {
@@ -311,7 +341,6 @@ export default {
       this.$store.commit("setSolution", this.tableData[param.index]);
       this.$store.commit("setCurrent", 2);
       this.$router.push("/industrialSystem/process");
-       window.location.reload();
     },
     exportExcel() {
       this.$refs.tables.exportCsv({
@@ -320,10 +349,10 @@ export default {
     }
   },
   beforeMount() {
-        if(this.$store.state.alarm.current ===0){
-      this.$router.push('/industrialSystem/record')
+    if (this.$store.state.alarm.current === 0) {
+      this.$router.push("/industrialSystem/record");
     }
-    
+
     this.getScheme();
     this.getCode();
   }

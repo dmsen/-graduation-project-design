@@ -11,28 +11,59 @@
       :columns="columns"
       @on-delete="handleDelete"
     />
-    <Rate :value="1" :count = "1" character="此页面暂仅供参考" />
-    <Button style="margin: 10px 0;" type="primary" @click="exportExcel">导出为Csv文件</Button>
-    <Button style="margin: 10px 0 10px 5px;" type="default" @click="showAddCodeGroup">增加组合码</Button>
+    <Rate :value="1" :count="1" character="此页面暂仅供参考" />
+    <Button style="margin: 10px 0;" type="primary" @click="exportExcel"
+      >导出为Csv文件</Button
+    >
+    <Button
+      style="margin: 10px 0 10px 5px;"
+      type="default"
+      @click="showAddCodeGroup"
+      >增加组合码</Button
+    >
     <Card v-if="handleCodeGroup" :dis-hover="true">
       <Row>
         <i-col span="17">
-          <Form :model="formItem" ref="formItem" :label-width="100" class="form">
+          <Form
+            :model="formItem"
+            ref="formItem"
+            :label-width="100"
+            class="form"
+          >
             <FormItem label="组合码名称">
-              <Input v-model="formItem.name" style="width: auto"/>
+              <Input v-model="formItem.name" style="width: auto" />
             </FormItem>
             <FormItem label="选择监测点组">
-              <Select v-model="formItem.id" style="width: auto" @on-change="handleChooseIopGroup">
-                <Option v-for="(i, index) in formItem.iopList" :key="index" :value="i.id">{{i.name}}</Option>
+              <Select
+                v-model="formItem.id"
+                style="width: auto"
+                @on-change="handleChooseIopGroup"
+              >
+                <Option
+                  v-for="(i, index) in formItem.iopList"
+                  :key="index"
+                  :value="i.id"
+                  >{{ i.name }}</Option
+                >
               </Select>
             </FormItem>
             <FormItem :label="it.name" v-for="it in formItem.item" :key="it.id">
-              <Select v-model="it.iop" v-show="formItem.id" multiple style="width: auto">
-                <Option v-for="(i, index) in it.iops" :key="index" :value="i.id">{{i.name}}</Option>
+              <Select
+                v-model="it.iop"
+                v-show="formItem.id"
+                multiple
+                style="width: auto"
+              >
+                <Option
+                  v-for="(i, index) in it.iops"
+                  :key="index"
+                  :value="i.id"
+                  >{{ i.name }}</Option
+                >
               </Select>
             </FormItem>
             <FormItem label="异常消息">
-              <Input v-model="formItem.msg" style="width: auto"/>
+              <Input v-model="formItem.msg" style="width: auto" />
             </FormItem>
             <FormItem label="异常等级">
               <Select v-model="formItem.level" style="width: auto">
@@ -42,10 +73,20 @@
               </Select>
             </FormItem>
             <FormItem label="时延">
-              <Input v-model="formItem.timeLimit" style="width: auto"/>
+              <Input v-model="formItem.timeLimit" style="width: auto" />
             </FormItem>
-            <Button style="margin: 10px 0 10px 100px;" type="primary" @click="handleSubmit">确认提交</Button>
-            <Button style="margin: 10px 0 10px 5px;" type="default" @click="handleCancel">取消</Button>
+            <Button
+              style="margin: 10px 0 10px 100px;"
+              type="primary"
+              @click="handleSubmit"
+              >确认提交</Button
+            >
+            <Button
+              style="margin: 10px 0 10px 5px;"
+              type="default"
+              @click="handleCancel"
+              >取消</Button
+            >
           </Form>
         </i-col>
       </Row>
@@ -212,7 +253,7 @@ export default {
         const {
           data: { msg }
         } = await getCodeGroups();
-        console.log(msg)
+        console.log(msg);
         this.tableData = [];
         for (let i = 0, l = msg.length; i < l; i++) {
           this.tableData.push({

@@ -10,18 +10,19 @@
     </Card>
     <Card :dis-hover="true" v-show="current === 0">
       点击前往
-      <a @click="handleGo('/alarm/record')">异常记录页面</a>选择异常记录
+      <a @click="handleGo('/industrialSystem/record')">异常记录页面</a
+      >选择异常记录
     </Card>
     <Card :dis-hover="true" v-show="current === 1">
       <tables
-              border
-              :disabled-hover="true"
-              ref="tables"
-              editable
-              searchable
-              search-place="top"
-              v-model="alarmCodesTableData"
-              :columns="alarmCodesColumns"
+        border
+        :disabled-hover="true"
+        ref="tables"
+        editable
+        searchable
+        search-place="top"
+        v-model="alarmCodesTableData"
+        :columns="alarmCodesColumns"
       />
       <!--点击前往-->
       <!--<a @click="handleGo('/alarm/solution')">解决方案页面</a>选择解决方案-->
@@ -38,8 +39,10 @@
         <Option :value="1">成功</Option>
         <Option :value="2">处理中</Option>
       </Select>
-      <Input v-model="msg" type="textarea" :rows="4" placeholder="反馈信息"/>
-      <Button @click="handleSubmit" style="margin: 10px 0" type="success">提交反馈</Button>
+      <Input v-model="msg" type="textarea" :rows="4" placeholder="反馈信息" />
+      <Button @click="handleSubmit" style="margin: 10px 0" type="success"
+        >提交反馈</Button
+      >
     </Card>
     <Card :dis-hover="true" v-show="current === 3">
       提交成功..
@@ -57,7 +60,7 @@ import {
 import { errMessage } from "@/api/index.js";
 export default {
   components: {
-      Tables
+    Tables
   },
   data() {
     return {
@@ -93,76 +96,76 @@ export default {
       solutionData: [],
       alarmCodesTableData: [],
       alarmCodesColumns: [
-            { title: "设备名称", key: "macName" },
-            { title: "监测点名称", key: "iopName" },
-            { title: "异常码", key: "code" },
-            { title: "异常码名称", key: "codeName" },
-            { title: "异常消息", key: "codeMsg" },
-            { title: "开始时间", key: "sDate" },
-            { title: "持续时间", key: "duration" },
-            { title: "严重级别", key: "level" },
-            {
-                title: "异常记录状态",
-                key: "status",
-                render: (h, params) => {
-                    const row = params.row;
-                    const color =
-                        row.status === 0
-                            ? "default"
-                            : row.status === 2
-                            ? "primary"
-                            : "success";
-                    const text =
-                        row.status === 0
-                            ? "未处理"
-                            : row.status === 2
-                            ? "处理中"
-                            : "已处理";
-                    return h(
-                        "Tag",
-                        {
-                            props: {
-                                type: "dot",
-                                color: color
-                            },
-                            style: {
-                                marginLeft: "-5px"
-                            },
-                        },
-                        text
-                    );
+        { title: "设备名称", key: "macName" },
+        { title: "监测点名称", key: "iopName" },
+        { title: "异常码", key: "code" },
+        { title: "异常码名称", key: "codeName" },
+        { title: "异常消息", key: "codeMsg" },
+        { title: "开始时间", key: "sDate" },
+        { title: "持续时间", key: "duration" },
+        { title: "严重级别", key: "level" },
+        {
+          title: "异常记录状态",
+          key: "status",
+          render: (h, params) => {
+            const row = params.row;
+            const color =
+              row.status === 0
+                ? "default"
+                : row.status === 2
+                ? "primary"
+                : "success";
+            const text =
+              row.status === 0
+                ? "未处理"
+                : row.status === 2
+                ? "处理中"
+                : "已处理";
+            return h(
+              "Tag",
+              {
+                props: {
+                  type: "dot",
+                  color: color
+                },
+                style: {
+                  marginLeft: "-5px"
                 }
-            },
-            {
-                title: "操作",
-                key: "handle",
-                searchable: false,
-                button: [
-                    (h, params, vm) => {
-                        return h("div", [
-                            h(
-                                "Button",
-                                {
-                                    props: {
-                                        type: "primary",
-                                        size: "small"
-                                    },
-                                    style: {
-                                        marginLeft: "-10px"
-                                    },
-                                    on: {
-                                        click: () => {
-                                            this.handleGo('/industrialSystem/solution')
-                                        }
-                                    }
-                                },
-                                "选择解决方案"
-                            )
-                        ]);
+              },
+              text
+            );
+          }
+        },
+        {
+          title: "操作",
+          key: "handle",
+          searchable: false,
+          button: [
+            (h, params, vm) => {
+              return h("div", [
+                h(
+                  "Button",
+                  {
+                    props: {
+                      type: "primary",
+                      size: "small"
+                    },
+                    style: {
+                      marginLeft: "-10px"
+                    },
+                    on: {
+                      click: () => {
+                        this.handleGo("/industrialSystem/solution");
+                      }
                     }
-                ]
+                  },
+                  "选择解决方案"
+                )
+              ]);
             }
-      ],
+          ]
+        }
+      ]
     };
   },
   watch: {
@@ -179,7 +182,7 @@ export default {
         var code = this.recordData[0].code;
         var sDate = this.recordData[0].sDate;
         var record = this.recordData[0].id;
-        var status = this.status ;
+        var status = this.status;
         var msg = this.msg;
         var macName = this.recordData[0].macName;
       } else {
@@ -201,13 +204,11 @@ export default {
             msg,
             status
           });
-            if(res.data.result === 1)
-            {
-                _this.$Message.error(res.data.msg);
-
-            }else {
-                _this.$Message.success(res.data.msg);
-            }
+          if (res.data.result === 1) {
+            _this.$Message.error(res.data.msg);
+          } else {
+            _this.$Message.success(res.data.msg);
+          }
           _this.$store.commit("setCurrent", 3);
           _this.current = 3;
         } else {
@@ -220,14 +221,12 @@ export default {
             status,
             macName
           });
-          console.log("+++")
-           if(res.data.result === 1)
-            {
-                _this.$Message.error(res.data.msg);
-
-            }else {
-                _this.$Message.success(res.data.msg);
-            }
+          console.log("+++");
+          if (res.data.result === 1) {
+            _this.$Message.error(res.data.msg);
+          } else {
+            _this.$Message.success(res.data.msg);
+          }
           _this.$store.commit("setCurrent", 3);
           _this.current = 3;
         }
@@ -247,20 +246,37 @@ export default {
       this.current = 0;
     }
   },
-  beforeMount() {
-    this.recordData = []
-    this.solutionData = []
-    this.groupData = []
-    if(this.current ===1)
-      {
-          this.alarmCodesTableData = [];
-          this.alarmCodesTableData.push(this.$store.state.alarm.alarmRecord)
+  // beforeMount() {
+  //   console.log("1h1h1h1")
+  //   this.recordData = []
+  //   this.solutionData = []
+  //   this.groupData = []
+  //   if(this.current ===1)
+  //     {
+  //         this.alarmCodesTableData = [];
+  //         this.alarmCodesTableData.push(this.$store.state.alarm.alarmRecord)
+  //     }
+  //   this.solutionData.push(this.$store.state.alarm.solution);
+  //   this.recordData.push(this.$store.state.alarm.alarmRecord);
+  //   this.groupData.push(this.$store.state.alarm.alarmRecordGroup);
+  // },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      let that = vm;
+      that.recordData = [];
+      that.solutionData = [];
+      that.groupData = [];
+      console.log("当前页面：");
+      console.log(that.current, that.$store.state.alarm.current);
+      that.current = that.$store.state.alarm.current;
+      if (that.$store.state.alarm.current === 1) {
+        that.alarmCodesTableData = [];
+        that.alarmCodesTableData.push(that.$store.state.alarm.alarmRecord);
       }
-    this.solutionData.push(this.$store.state.alarm.solution);
-    this.recordData.push(this.$store.state.alarm.alarmRecord);
-    this.groupData.push(this.$store.state.alarm.alarmRecordGroup);
-  
-   
+      that.solutionData.push(that.$store.state.alarm.solution);
+      that.recordData.push(that.$store.state.alarm.alarmRecord);
+      that.groupData.push(that.$store.state.alarm.alarmRecordGroup);
+    });
   }
 };
 </script>

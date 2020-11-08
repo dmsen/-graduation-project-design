@@ -18,10 +18,18 @@
         :columns="column"
       />
     </Card>
-    <Card v-if="!showCode"> <Rate :value="1" :count = "1" character="仅供参考" /></Card>
+    <Card v-if="!showCode">
+      <Rate :value="1" :count="1" character="仅供参考"
+    /></Card>
     <Card :dis-hover="true" v-if="showCode">
-      <Select v-model="equipmentId" placeholder="请选择机器" @on-change="handleSearch">
-        <Option v-for="item in equipmentList" :value="item.id" :key="item.id">{{ item.name }}</Option>
+      <Select
+        v-model="equipmentId"
+        placeholder="请选择机器"
+        @on-change="handleSearch"
+      >
+        <Option v-for="item in equipmentList" :value="item.id" :key="item.id">{{
+          item.name
+        }}</Option>
       </Select>
       <tables
         border
@@ -35,20 +43,33 @@
       />
       <Row style="margin-top: 16px">
         <Col span="3">
-          <Button style="margin: 10px 0;" type="primary" @click="initAlarm">初始化异常记录</Button>
+          <Button style="margin: 10px 0;" type="primary" @click="initAlarm"
+            >初始化异常记录</Button
+          >
         </Col>
-        <Col span = "10" offset = "11">
-          <Page :total="dataLength" :current="currentPages" size="small" show-elevator  :page-size ="10" @on-change="changePages" show-total/>
+        <Col span="10" offset="11">
+          <Page
+            :total="dataLength"
+            :current="currentPages"
+            size="small"
+            show-elevator
+            :page-size="10"
+            @on-change="changePages"
+            show-total
+          />
         </Col>
       </Row>
     </Card>
-
   </div>
 </template>
 <script>
 import Tables from "_c/tables";
 import { getMachines } from "@/api/equipment.js";
-import { getRecord, getGroupRecord,singleAlarmCodesInit } from "@/api/alarm.js";
+import {
+  getRecord,
+  getGroupRecord,
+  singleAlarmCodesInit
+} from "@/api/alarm.js";
 import { errMessage } from "@/api/index.js";
 import { stampToDate } from "@/libs/tools.js";
 export default {
@@ -57,11 +78,11 @@ export default {
   },
   data() {
     return {
-      tabCodes:"code",
-      dataLength:0,
-      currentPages:1,
+      tabCodes: "code",
+      dataLength: 0,
+      currentPages: 1,
       showCode: true,
-      equipmentId: "",
+      equipmentId: null,
       equipmentList: [],
       columns: [
         { title: "设备名称", key: "macName" },
@@ -96,9 +117,9 @@ export default {
                   type: "dot",
                   color: color
                 },
-                  style: {
-                      marginLeft: "-5px"
-                  },
+                style: {
+                  marginLeft: "-5px"
+                }
               },
               text
             );
@@ -168,8 +189,8 @@ export default {
                   color: color
                 },
                 style: {
-                      marginLeft: "-5px"
-                  },
+                  marginLeft: "-5px"
+                }
               },
               text
             );
@@ -207,58 +228,53 @@ export default {
     };
   },
   methods: {
-      async initAlarm() {
-          const  _this = this
-          if(this.equipmentId)
-          {
-              try {
-                  const res = await singleAlarmCodesInit();
-                  if(res.data.result === 0)
-                  {
-                      _this.$Message.success(res.data.msg);
-                      _this.handleSearch()
-                  }
-                  else {
-                      _this.$Message.error(res.data.msg);
-                  }
-              } catch (err) {
-                  if (err.response !== undefined) {
-                      errMessage(err.response.status);
-                  } else {
-                      errMessage(1);
-                  }
-              }
-          }else {
-              try {
-                  const res = await singleAlarmCodesInit();
-                  if(res.data.result === 0)
-                  {
-                      _this.$Message.success(res.data.msg);
-                  }
-                  else {
-                      _this.$Message.error(res.data.msg);
-                  }
-              } catch (err) {
-                  if (err.response !== undefined) {
-                      errMessage(err.response.status);
-                  } else {
-                      errMessage(1);
-                  }
-              }
+    async initAlarm() {
+      const _this = this;
+      if (this.equipmentId) {
+        try {
+          const res = await singleAlarmCodesInit();
+          if (res.data.result === 0) {
+            _this.$Message.success(res.data.msg);
+            _this.handleSearch();
+          } else {
+            _this.$Message.error(res.data.msg);
           }
-
-      },
-    changePages(val){
-        this.currentPages =  val;
-        if (this.tabCodes === "code") {
-            this.handleSearch()
-        } else{
-            this.$Message.error("此功能无")
-            // this.getGroupRecord();
+        } catch (err) {
+          if (err.response !== undefined) {
+            errMessage(err.response.status);
+          } else {
+            errMessage(1);
+          }
         }
+      } else {
+        try {
+          const res = await singleAlarmCodesInit();
+          if (res.data.result === 0) {
+            _this.$Message.success(res.data.msg);
+          } else {
+            _this.$Message.error(res.data.msg);
+          }
+        } catch (err) {
+          if (err.response !== undefined) {
+            errMessage(err.response.status);
+          } else {
+            errMessage(1);
+          }
+        }
+      }
+    },
+    changePages(val) {
+      this.currentPages = val;
+      if (this.tabCodes === "code") {
+        this.handleSearch();
+      } else {
+        this.$Message.error("此功能无");
+        // this.getGroupRecord();
+      }
     },
     async getMachines() {
       try {
+        this.equipmentList = [];
         const {
           data: { msg }
         } = await getMachines();
@@ -280,9 +296,9 @@ export default {
       try {
         const sendPage = this.currentPages;
         const id = this.equipmentId;
-        const dataLists = await getRecord({ id,sendPage });
-        console.log('异常记录')
-        console.log(dataLists)
+        const dataLists = await getRecord({ id, sendPage });
+        console.log("异常记录");
+        console.log(dataLists);
         this.dataLength = dataLists.data.allDateLength;
         this.tableData = [];
         for (let _i = 0, l = dataLists.data.msg.length; _i < l; _i++) {
@@ -294,7 +310,7 @@ export default {
             code: dataLists.data.msg[_i].alarmCode,
             codeName: dataLists.data.msg[_i].alarmName,
             codeMsg: dataLists.data.msg[_i].alarmMsg,
-            sDate:  stampToDate(dataLists.data.msg[_i].startTime, "year"),
+            sDate: stampToDate(dataLists.data.msg[_i].startTime, "year"),
             duration: dataLists.data.msg[_i].duration,
             level: dataLists.data.msg[_i].level,
             status: dataLists.data.msg[_i].status
@@ -336,31 +352,39 @@ export default {
       }
     },
     handleChoose(e) {
-        console.log(this.tableData[e.index])
+      console.log(this.tableData[e.index]);
       this.$store.commit("setRecord", this.tableData[e.index]);
       this.$store.commit("setCurrent", 1);
       this.$router.push("/industrialSystem/solution");
-       window.location.reload();
     },
     handleChooseGroup(e) {
       this.$store.commit("setRecordGroup", this.tableData[e.index]);
       this.$store.commit("setCurrent", 1);
       this.$router.push("/industrialSystem/solution");
-       window.location.reload();
     },
     handleTab(e) {
-
       if (e === "code") {
         this.showCode = true;
       } else {
         // this.getGroupRecord();
-        this.$Message.error("此功能无")
+        this.$Message.error("此功能无");
         this.showCode = false;
       }
     }
   },
-  beforeMount() {
-    this.getMachines();
+  // beforeMount() {
+  //   this.getMachines();
+  // },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      vm.tableData = [];
+      vm.getMachines();
+      console.log("11111111111");
+      console.log(vm.equipmentId);
+      if (vm.equipmentId) {
+        vm.handleSearch();
+      }
+    });
   }
 };
 </script>

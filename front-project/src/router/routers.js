@@ -62,7 +62,6 @@ export default [{
       component: () => import("@/view/b-map/b-map.vue"),
     }, ],
   },
-
   {
     path: "/",
     meta: {
@@ -112,7 +111,7 @@ export default [{
     },
     component: myMain,
     children: [{
-      path: "/bEcharts",
+      path: "/dynamic-graph",
       name: "dynamic-graph",
       meta: {
         icon: "ios-flower",
@@ -128,7 +127,7 @@ export default [{
     meta: {
       icon: "ios-flower",
       title: "故障（业务）处理流程",
-      showAlways: true,
+      hideInMenu: false,
       access: [1, 0, 2],
     },
     component: myMain,
@@ -137,7 +136,7 @@ export default [{
       name: "fault-processing",
       meta: {
         icon: "ios-flower",
-        title: "故障（业务）处理流程1",
+        title: "故障（业务）处理流程",
       },
       component: () => import("@/view/fault-processing/fault-processing.vue"),
     }, ],
@@ -151,7 +150,7 @@ export default [{
     },
     component: myMain,
     children: [{
-      path: "/audio",
+      path: "audio",
       name: "audio",
       meta: {
         icon: "ios-flower",
@@ -169,13 +168,14 @@ export default [{
     },
     component: myMain,
     children: [{
-      path: "/vidio",
+      path: "vidio",
       name: "vidio",
       meta: {
         icon: "ios-flower",
         title: "视频",
       },
       component: () => import("@/view/vidio/vidio.vue"),
+     
     }, ],
   },
   {
@@ -217,6 +217,70 @@ export default [{
               import("@/view/industrial-system/equipment/mac.vue"),
           },
         ],
+      },  
+      {
+        path: '/industrialSystem/',
+        name: 'industrialSystemDate',
+        meta: {
+          icon: 'md-git-branch',
+          title: '实时数据分析',
+          showAlways: true,
+          access: [1,0],
+        },
+        component: parentView,
+        children: [{
+            path: 'dynamicDate1',
+            name: 'dynamicDate1',
+            meta: {
+              title: '主页'
+            },
+            component: () => import('@/view/industrial-system/monitor/index.vue')
+          },
+          {
+            path: 'dynamicDate2',
+            name: 'dynamicDate2',
+            meta: {
+              title: '子页'
+            },
+            component: () => import('@/view/industrial-system/monitor/childIndex.vue'),
+          },
+        ]
+      },
+      {
+        path: '/industrialSystem/',
+        name: 'analysis',
+        meta: {
+          icon: 'md-git-branch',
+          title: '数据分析',
+          showAlways: true,
+          access: [1,0],
+        },
+        component: parentView,
+        children: [{
+            path: 'history',
+            name: 'history',
+            meta: {
+              title: '历史记录'
+            },
+            component: () => import('@/view/industrial-system/analysis/history.vue')
+          },
+          {
+            path: 'hty',
+            name: 'hty',
+            meta: {
+              title: '历史趋势分析'
+            },
+            component: () => import('@/view/industrial-system/analysis/htyData.vue')
+          },
+          {
+            path: 'contrast',
+            name: 'contrast',
+            meta: {
+              title: '数据对比'
+            },
+            component: () => import('@/view/industrial-system/analysis/contrast.vue')
+          },
+        ]
       },
       {
         path: '/industrialSystem/',
@@ -253,7 +317,6 @@ export default [{
           icon: 'md-notifications-outline',
           title: '异常报警',
           showAlways: true,
-          hideInMenu: sessionStorage.getItem('alarmMenuLand') ? true : false,
           access: [1,0],
         },
         component: parentView,
@@ -294,7 +357,7 @@ export default [{
             path: 'process',
             name: 'process',
             meta: {
-              title: '故障处理'
+              title: '故障处理',
             },
             component: () => import('@/view/industrial-system/alarm/process.vue')
           },
@@ -343,6 +406,26 @@ export default [{
 
     ],
   },
+  {
+    path: "/",
+    name: "bMapProject",
+    component: myMain,
+    meta: {
+      hideInMenu: false,
+      access: [1, 0, 2],
+    },
+    children: [{
+      path: "/bMapProject",
+      name: "b-map-project",
+      meta: {
+        hideInMenu: false,
+        title: "实战-百度地图",
+        icon: "ios-flower",
+      },
+      component: () => import("@/view/b-map-project/b-map-project.vue"),
+    }, ],
+  },
+
   {
     path: "/401",
     name: "error_401",

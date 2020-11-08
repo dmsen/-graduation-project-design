@@ -272,3 +272,86 @@ class alarmSolutons(models.Model):
         verbose_name_plural = verbose_name
         db_table = '解决方案'
         ordering = ['alarmSolutonId']
+
+
+###########mapPriject-百度地图项目####################################################
+######################################################################################
+class linSystemMapPoint(models.Model):
+    mapPointId = models.AutoField(primary_key=True, verbose_name='地图标点id')
+    mapPointName = models.CharField(max_length=20, verbose_name='地图标点名',unique=True)
+    mapPointJ = models.DecimalField(max_digits=9,decimal_places=6, verbose_name='经度')
+    mapPointW= models.DecimalField(max_digits=9, decimal_places=6, verbose_name='纬度')
+    # 机构详细信息
+    mapPointAddr = models.CharField(max_length=60, verbose_name='地址',null=True, blank=True,)
+    mapPointTel =  models.CharField(max_length=12, verbose_name='联系电话',null=True, blank=True)
+    mapPointBedNum = models .IntegerField(null = True,blank = True,verbose_name='床位')
+    mapPointFee = models.IntegerField(null=True, blank=True, verbose_name='费用')
+    mapPointJian = models.TextField(max_length=150, verbose_name='简介',null=True, blank=True)
+    mapPointServer = models.TextField(max_length=300, verbose_name='服务详情',null=True, blank=True)
+    mapPointfare = models.IntegerField(verbose_name='热度', default=0)
+    mapPointViews = models.IntegerField(verbose_name='浏览量', default=0)
+
+    # def __str__(self):
+    #     return self.mapPointName
+    def toDict(self):
+        return dict([(attr, getattr(self, attr)) for attr in
+                     [f.name for f in self._meta.fields]])  # type(self._meta.fields).__name__
+    class Meta:
+        verbose_name = "linSystem地图标点"
+        verbose_name_plural = verbose_name
+        db_table = 'linSystem地图标点'
+        ordering = ['-mapPointfare']
+# # 删除之前的图片，避免 图片冗杂
+# @receiver(pre_delete, sender=hutProjectsUsers)
+# # sender = 你要修改图片字段所在的类
+# def file_delete(sender, instance, **kwargs):
+#     # Pass false so FileField doesn't save the model.
+#     # print('进入文件删除方法，删的是',instance.alter_file)
+#     instance.userTou.delete(False)
+
+class linSystemMapPointImages(models.Model):
+    mapPointImagesId = models.AutoField(primary_key=True, verbose_name='地图标点图片id')
+    mapPointImage = models.ImageField(upload_to='mapPoint/%Y/%m%d/', verbose_name='地图标点图片',
+                                default='linSystem/mapPointImage/defaultTou.png')
+    mapPoint = models.ForeignKey(linSystemMapPoint, verbose_name='对应标点', related_name='mapPointImages')
+    # def __str__(self):
+    #     return self.userName
+    def toDict(self):
+        return dict([(attr, getattr(self, attr)) for attr in
+                     [f.name for f in self._meta.fields]])  # type(self._meta.fields).__name__
+    class Meta:
+        verbose_name = "linSystem地图标点图片"
+        verbose_name_plural = verbose_name
+        db_table = 'linSystem地图项目标点图片'
+        ordering = ['-mapPointImagesId']
+# 删除之前的图片，避免 图片冗杂
+@receiver(pre_delete, sender=linSystemMapPointImages)
+# sender = 你要修改图片字段所在的类
+def file_delete(sender, instance, **kwargs):
+    # Pass false so FileField doesn't save the model.
+    # print('进入文件删除方法，删的是',instance.alter_file)
+    instance.mapPointImage.delete(False)
+
+class linSystemMapPointVedios(models.Model):
+    mapPointVediosId = models.AutoField(primary_key=True, verbose_name='地图标点视频id')
+    mapPointVedio = models.FileField(upload_to='linSystem/mapPointVedio/%Y/%m%d/', verbose_name='地图标点视频',
+                                default='linSystem/mapPointVedio/lin0.mp4')
+    mapPoint = models.ForeignKey(linSystemMapPoint, verbose_name='对应标点', related_name='mapPointVedio')
+    # def __str__(self):
+    #     return self.userName
+    def toDict(self):
+        return dict([(attr, getattr(self, attr)) for attr in
+                     [f.name for f in self._meta.fields]])  # type(self._meta.fields).__name__
+    class Meta:
+        verbose_name = "linSystem地图标点视频"
+        verbose_name_plural = verbose_name
+        db_table = 'linSystem地图标点视频'
+        ordering = ['-mapPointVediosId']
+# 删除之前的视频，避免 视频冗杂
+@receiver(pre_delete, sender=linSystemMapPointVedios)
+# sender = 你要修改图片字段所在的类
+def vedio_delete(sender, instance, **kwargs):
+    # Pass false so FileField doesn't save the model.
+    # print('进入文件删除方法，删的是',instance.alter_file)
+    instance.mapPointVedio.delete(False)
+

@@ -38,6 +38,7 @@ urlpatterns = [
     url('^linSystem/readNotice$', views.linSystem_user_readNotice),
     # 获取已读通知
     url('^linSystem/readEdNotice$', views.linSystem_user_readEdNotice),
+    url('^linSystem/jsonget$', views.linSystem_jsonGet),
     ##########    实时监测系统     ################
     # 设备类型
     url('^linSystem/machType/get$', views.linSystem_machine_type_get),
@@ -76,6 +77,8 @@ urlpatterns = [
     # 单个异常记录
     url('^linSystem/singleAlarmCodes/get$', views.linSystem_singleAlarmCodes_get),
     url('^linSystem/singleAlarmCodes/init$', views.linSystem_singleAlarmCodes_init),
+    # 所有异常记录
+    # url('^linSystem/singleAlarmCodes/getAll$', views.linSystem_singleAlarmCodes_getAll),
     # 解决方案
     url('^linSystem/solution/get$', views.linSystem_solution_get),
     url('^linSystem/solution/add$', views.linSystem_solution_add),
@@ -84,5 +87,26 @@ urlpatterns = [
     #  故障处理接口
     url('^linSystem/alarmProcess$', views.linSystem_alarmProcess),
     url('^linSystem/alarmProcess/history$', views.linSystem_alarmProcess_history),
+    # 历史记录highcharts
+    url('^linSystem/data/historyDatas$', views.linSystem_historyDatas_get),
+    # 历史记录echarts接口1
+    url('^linSystem/data/historyDatasLimitCount$', views.linSystem_historyData_echarts_get),
+    # 历史记录echarts接口2
+    url('^linSystem/data/historyDatasLimitCount2$', views.linSystem_historyData_echarts2_get),
+    # 历史记录echarts接口3
+    url('^linSystem/data/historyDatasLimitCount3$', views.linSystem_historyData_echarts3_get),
+    # 数据对比
+    url('^linSystem/data/Contrast$', views.linSystem_contrast_get),
+    # 实时传输数据
+    url(r'^linSystem/websocket$', views.linSystem_websocket),
+    # 标点机构
+    # 标点机构
+    url('^linSystem/mapPoint/get$', views.linSystem_mapPonit_get),
+    url('^linSystem/mapPoint/search$', views.linSystem_mapPonit_search),
+    url('^linSystem/mapPointInfo/add$', views.linSystem_mapPonit_add),
+    url('^linSystem/mapPoint/add$', views.linSystem_mapPonitImage_add),
+    url('^linSystem/mapPoint/imageZan$', views.linSystem_mapPonitImage_zan),
+    url('^linSystem/mapPoint/view$', views.linSystem_mapPonit_view),
+    url('^linSystem/mapPoint/vedioAdd$', views.linSystem_mapPonitVedio_add),
 
 ]

@@ -29,8 +29,8 @@ const turnTo = (to, access, next) => {
 const LOGIN_PAGE_NAME = 'login'
 // 路由守卫
 router.beforeEach((to, from, next) => {
-  console.log("路由信息")
-  console.log(to, from, next)
+  // console.log("路由信息")
+  // console.log(to, from, next)
   iView.LoadingBar.start() //iview 中的进度条组件
   const token = getToken() //获取登陆的权限，决定哪些页面可以显示、访问
   if (!token && to.name !== LOGIN_PAGE_NAME) {
@@ -48,7 +48,7 @@ router.beforeEach((to, from, next) => {
     })
   } else {
     if (store.state.user.hasGetInfo) {
-      console.log('store.state.user.hasGetInfo  ' + store.state.user.hasGetInfo)
+      // console.log('store.state.user.hasGetInfo  ' + store.state.user.hasGetInfo)
       turnTo(to, store.state.user.access, next)
     } else {
       store.dispatch('getUserInfo').then(user => {

@@ -25,10 +25,27 @@ Vue.use(OrgTree)
 // 树状表
 import TreeTable from 'tree-table-vue'
 Vue.use(TreeTable)
+// 导入echarts
+import echarts from 'echarts'
+// 视频播放器
+import Video from 'video.js'
+import 'video.js/dist/video-js.css'
+// ElementUI
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 
+
+// import Axios from 'axios'
+// //axios全局配置
+// Vue.prototype.$axios = Axios
+// Axios.defaults.baseURL = config.baseUrl.pro
+// Axios.defaults.headers.post['Content-Type'] = 'application/json';
+// Vue.config.productionTip = false
+// vue全局配置
 Vue.config.productionTip = false;
 Vue.prototype.$config = config;
-
+Vue.prototype.$echarts = echarts;
 // 解决页面刷新，vuex数据丢失的问题
 //刷新保存状态
 if (sessionStorage.getItem("store")) {
@@ -42,6 +59,8 @@ if (sessionStorage.getItem("store")) {
 window.addEventListener("beforeunload", () => {
   sessionStorage.setItem("store", JSON.stringify(store.state));
 });
+
+
 
 new Vue({
   router,
